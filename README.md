@@ -15,7 +15,9 @@ nvim-ctrl run 'source ~/.dotfiles/nvim/init.vim`
 
 ## Setup
 
-1. `cargo install --git https://github.com/chmln/nvim-ctrl`
+1. Download a binary from [releases](https://github.com/chmln/nvim-ctrl/releases)
+OR
+`cargo install --git https://github.com/chmln/nvim-ctrl`
 2. Put this in `~/.local/bin/nvim`:
 ```sh
  #!/bin/sh
