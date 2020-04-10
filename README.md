@@ -19,3 +19,7 @@ nvim-ctrl 'source ~/.dotfiles/nvim/init.vim`
 OR
 `cargo install --git https://github.com/chmln/nvim-ctrl`
 2. Open up neovim in a few places and run some commands with `nvim-ctrl`
+
+## How It Works
+
+Neovim [automatically](https://github.com/neovim/neovim/blob/master/runtime/doc/api.txt) sets up RPC sockets in /tmp on unix systems, unless its overridden by `--listen`. `nvim-ctrl` finds these sockets and sends them the appropriate commands.
