@@ -1,6 +1,6 @@
 # nvim-ctrl
 
-Control neovim instances using the command line.
+I wanted an easy way toggle `background=dark` from a night mode script but figured this is nice and flexible enough for any other use as well.
 
 Examples:
 
