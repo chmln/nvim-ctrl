@@ -13,11 +13,11 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            asset_name: mything-linux
+            asset_name: nvim-ctrl.linux
           - os: windows-latest
-            asset_name: nvim-ctrl-windows
+            asset_name: nvim-ctrl.windows
           - os: macos-latest
-            asset_name: nvim-ctrl-macos-amd64
+            asset_name: nvim-ctrl.macos
 
     steps:
     - uses: hecrj/setup-rust-action@v1
