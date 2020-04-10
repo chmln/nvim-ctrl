@@ -17,20 +17,20 @@ enum Subcommand {
     /// set option=value
     Set { name: String, value: String },
     /// run an arbitrary command
-    Run {
-        cmd: String
-    },
+    Run { cmd: String },
 }
 
 impl Control {
-    fn run(&self, nvim: &mut Neovim) {
-        let res = match &self.subcmds {
-            Subcommand::Set { name, value } => {
-                NeovimApi::set_option(nvim, name, Value::String(value.as_str().into()))
-            }
-            Subcommand::Run { cmd } => nvim.command(cmd),
+    fn run(&self, nvim: &mut Neovim) -> Result<()> {
+        match &self.subcmds {
+            Subcommand::Set { name, value } => NeovimApi::set_option(
+                nvim,
+                name,
+                Value::String(value.as_str().into()),
+            )?,
+            Subcommand::Run { cmd } => nvim.command(cmd)?,
         };
-        let _ = res.map_err(|e| eprintln!("Error: {}", e));
+        Ok(())
     }
 }
 
@@ -45,7 +45,10 @@ fn main() -> Result<()> {
                 session.start_event_loop();
                 Neovim::new(session)
             })
-            .for_each(|mut nvim| args.run(&mut nvim)),
+            .for_each(|mut nvim| {
+                let _ =
+                    args.run(&mut nvim).map_err(|e| eprintln!("Error: {}", e));
+            }),
         Err(e) if e.kind() == std::io::ErrorKind::NotFound => return Ok(()),
         Err(e) => Err(e)?,
     }
