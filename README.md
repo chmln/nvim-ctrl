@@ -1,11 +1,11 @@
 # nvim-ctrl
 
-I wanted an easy way toggle `background=dark` from a night mode script but figured this is nice and flexible enough for any other use as well.
+`nvim-ctrl` sends commands to all running neovim instances.
 
 Examples:
 
 ```sh
-# Toggle dark mode (set background=dark)
+# Turn on dark syntax
 nvim-ctrl 'set background=dark'
 
 # Toggle night mode based on environment variable
