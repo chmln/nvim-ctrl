@@ -32,6 +32,15 @@ fn main() -> Result<()> {
                 )
             })
             .flatten()
+            .filter_map(|dir| {
+                Some(
+                    std::fs::read_dir(dir)
+                        .ok()?
+                        .filter_map(Result::ok)
+                        .map(|d| d.path()),
+                )
+            })
+            .flatten()
             .filter_map(|d| Session::new_unix_socket(d).ok())
             .map(|mut session| {
                 session.start_event_loop();
