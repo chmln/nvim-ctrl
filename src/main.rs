@@ -7,6 +7,8 @@ use structopt::StructOpt;
 struct Control {
     /// run an arbitrary command
     cmd: String,
+    #[structopt(default_value = "nvim", long)]
+    vim_type: String
 }
 
 fn main() -> Result<()> {
@@ -20,7 +22,7 @@ fn main() -> Result<()> {
                 let is_dir =
                     matches!(f.file_type().map(|t| t.is_dir()), Ok(true));
                 let name_heuristic =
-                    f.file_name().to_string_lossy().starts_with("nvim");
+                    f.file_name().to_string_lossy().starts_with(&args.vim_type);
                 is_dir && name_heuristic
             })
             .filter_map(|dir| {
