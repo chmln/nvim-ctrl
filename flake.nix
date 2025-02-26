@@ -1,6 +1,8 @@
 {
   description = "Control neovim instances using the command line";
 
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
+
   outputs = { nixpkgs, ... }:
     let
       forAllSystems = gen:
