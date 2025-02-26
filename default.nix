@@ -12,7 +12,8 @@ rustPlatform.buildRustPackage {
 
   src = ./.;
 
-  cargoHash = "sha256-gEgSb2DkiGBVmSMt3whVLbCEOrPQKhtWvIhnbUDBYOk=";
+  useFetchCargoVendor = true;
+  cargoHash = "sha256-tNCSGL0xelWtSZnSHV0l27vh8iYFeFoiFCAD/BPCNnI=";
 
   meta = {
     description = "Control neovim instances using the command line";
